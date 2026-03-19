@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 0 0% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 216 46% 20%;
+    --primary-foreground: 48 100% 50%;
+    --secondary: 220 20% 97%;
+    --secondary-foreground: 216 46% 20%;
+    --muted: 220 14% 90%;
+    --muted-foreground: 0 0% 33%;
+    --accent: 48 100% 50%;
+    --accent-foreground: 216 46% 20%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 216 46% 20%;
+    --radius: 0.75rem;
+
+    --navy: 216 46% 20%;
+    --navy-deep: 216 60% 15%;
+    --blue-brand: 214 65% 33%;
+    --gold: 48 100% 50%;
+    --gold-dark: 37 91% 55%;
+    --terminal-black: 0 0% 4%;
+    --terminal-green: 147 100% 64%;
+    --terminal-cyan: 180 100% 41%;
+    --terminal-pink: 345 100% 65%;
+    --terminal-blue: 228 100% 65%;
+    --page-bg: 220 20% 97%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .font-terminal {
+    font-family: 'Courier New', monospace;
+  }
+
+  .section-badge {
+    @apply inline-block text-[11px] uppercase tracking-[2px] font-semibold rounded-full px-4 py-1;
+    background: hsl(var(--gold));
+    color: hsl(var(--navy));
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-center;
+    color: hsl(var(--navy));
+  }
+
+  .section-subtext {
+    @apply text-center text-muted-foreground max-w-2xl mx-auto text-[15px] leading-relaxed;
+  }
+
+  .cse-card {
+    @apply bg-card rounded-2xl border border-border overflow-hidden transition-all duration-200;
+  }
+  .cse-card:hover {
+    transform: translateY(-4px);
+    border-color: #c0c0c0;
+  }
+
+  .card-top {
+    @apply h-40 flex items-center justify-center text-white font-bold text-lg tracking-wider;
+  }
+
+  .card-badge {
+    @apply inline-block text-xs font-semibold rounded-full px-3 py-1;
+  }
+
+  .dashed-bg {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 59px,
+      hsl(var(--border)) 59px,
+      hsl(var(--border)) 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 59px,
+      hsl(var(--border)) 59px,
+      hsl(var(--border)) 60px
+    );
+    background-size: 60px 60px;
+  }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.5s ease;
+  }
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes scroll-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+  50% { transform: translateY(-20px) scale(1.1); opacity: 0.6; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes code-block-appear {
+  from { width: 0; opacity: 0; }
+  to { width: var(--target-width); opacity: 1; }
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes draw-path {
+  from { stroke-dashoffset: 200; stroke-dasharray: 200; }
+  to { stroke-dashoffset: 0; stroke-dasharray: 200; }
+}
+
+
+.animate-float-particle {
+  animation: float-particle 3s ease-in-out infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 35s linear infinite;
+}
+
+.animate-draw-path {
+  animation: draw-path 2s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
