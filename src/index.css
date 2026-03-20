@@ -126,6 +126,15 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @keyframes marquee {
@@ -179,4 +188,3 @@
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
-
