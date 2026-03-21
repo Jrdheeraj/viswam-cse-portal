@@ -26,6 +26,14 @@ const Footer = lazy(() => import("@/components/Footer"));
 export default function Home() {
   const viewerRef = useRef<HTMLElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [loadRest, setLoadRest] = useState(false);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 900;
+    // Delay rendering below-the-fold content entirely on mobile to prioritize hero paint
+    const timer = setTimeout(() => setLoadRest(true), isMobile ? 800 : 150);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Prevent scrolling when menu is open
   useEffect(() => {
@@ -38,12 +46,17 @@ export default function Home() {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    // Load Spline viewer script precisely
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'https://unpkg.com/@splinetool/viewer@1.12.70/build/spline-viewer.js';
-    script.async = true;
-    document.head.appendChild(script);
+    const isMobile = window.innerWidth <= 900;
+    let script: HTMLScriptElement | null = null;
+    
+    // Huge mobile optimization: Delay booting WebGL script so the page is interactive instantly
+    const splineTimer = setTimeout(() => {
+      script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://unpkg.com/@splinetool/viewer@1.12.70/build/spline-viewer.js';
+      script.async = true;
+      document.head.appendChild(script);
+    }, isMobile ? 2500 : 0);
 
     // Scroll-reveal logic - use MutationObserver to catch lazy-loaded elements
     const observer = new IntersectionObserver(
@@ -93,7 +106,10 @@ export default function Home() {
     const intervalId = setInterval(hideSplineLogo, 1000);
 
     return () => {
-      document.head.removeChild(script);
+      clearTimeout(splineTimer);
+      if (script && document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
       observer.disconnect();
       mutationObserver.disconnect();
       if (intervalId) clearInterval(intervalId);
@@ -207,30 +223,32 @@ export default function Home() {
       </section>
 
       {/* ADDITIONAL SECTIONS - Lazy Loaded */}
-      <Suspense fallback={null}>
-        <AnnouncementsTicker />
-        <StatsBar />
-        <div id="about">
-          <AboutSection />
-        </div>
-        <VisionMission />
-        <WhyCSE />
-        <div id="academics">
-          <Academics />
-        </div>
-        <Facilities />
-        <div id="activities">
-          <Activities />
-        </div>
-        <HodQuote />
-        <Faculty />
-        <Placements />
-        <CTABanner />
-        <div id="contact">
-          <ContactSection />
-        </div>
-        <Footer />
-      </Suspense>
+      {loadRest && (
+        <Suspense fallback={null}>
+          <AnnouncementsTicker />
+          <StatsBar />
+          <div id="about">
+            <AboutSection />
+          </div>
+          <VisionMission />
+          <WhyCSE />
+          <div id="academics">
+            <Academics />
+          </div>
+          <Facilities />
+          <div id="activities">
+            <Activities />
+          </div>
+          <HodQuote />
+          <Faculty />
+          <Placements />
+          <CTABanner />
+          <div id="contact">
+            <ContactSection />
+          </div>
+          <Footer />
+        </Suspense>
+      )}
     </>
   );
 }
