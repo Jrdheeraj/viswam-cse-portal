@@ -29,13 +29,9 @@ export default function Home() {
   const [loadRest, setLoadRest] = useState(false);
   const [isMobileFallback, setIsMobileFallback] = useState(() => {
     if (typeof window !== 'undefined') {
-      // Aggressive detection to catch mobile browsers simulating "Desktop Site"
-      const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.matchMedia("(pointer: coarse)").matches;
+      const isTouch = window.matchMedia("(pointer: coarse)").matches;
       const isMobileUA = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-      const isSmallViewport = window.innerWidth <= 900;
-      const isSmallScreen = window.screen.width <= 768; // Physical phone screen width never lies
-      
-      return hasTouch || isMobileUA || isSmallViewport || isSmallScreen;
+      return isTouch || isMobileUA || window.innerWidth <= 900;
     }
     return false;
   });
@@ -222,7 +218,7 @@ export default function Home() {
         {/* Spline robot with background class */}
         {isMobileFallback ? (
           <img 
-            src="/robot.jpg" 
+            src="/download.png" 
             alt="Robot background" 
             className={styles.mobileRobotImg} 
           />
