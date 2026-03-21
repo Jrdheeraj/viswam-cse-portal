@@ -182,7 +182,7 @@
   font-size: 24vw !important; 
   z-index: 2 !important; 
   color: rgba(255, 255, 255, 0.6) !important; 
-  top: 120px !important; /* Fixed pixel distance completely eliminates weird vertical stretching gaps on desktop-simulated mobile screens */
+  top: 80px !important; /* Immediately flush below the responsive navbar without floating gaps */
 }
 
 .forceMobileLayout .heroBadge {
