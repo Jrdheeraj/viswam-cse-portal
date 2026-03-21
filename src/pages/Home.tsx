@@ -218,7 +218,7 @@ export default function Home() {
         {/* Spline robot with background class */}
         {isMobileFallback ? (
           <img 
-            src="/download.png" 
+            src="/robot.jpg" 
             alt="Robot background" 
             className={styles.mobileRobotImg} 
           />

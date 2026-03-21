@@ -152,7 +152,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ensures robot fits gracefully without edge cropping */
+  object-fit: cover;
   object-position: center bottom; /* Anchors the robot cleanly to the base of the screen */
   z-index: 1;
   pointer-events: none;
@@ -179,12 +179,10 @@
 }
 
 .forceMobileLayout .bgText { 
-  font-size: 26vw !important; 
-  z-index: 0 !important; 
-  color: white !important; 
-  top: 50% !important; /* Centers text cleanly behind the robot exactly like Desktop Site */
-  transform: translateY(-50%) !important;
-  line-height: 0.8 !important;
+  font-size: 24vw !important; 
+  z-index: 2 !important; 
+  color: rgba(255, 255, 255, 0.6) !important; 
+  top: 15% !important; /* Frames perfectly directly above the center-bottom anchored robot head */
 }
 
 .forceMobileLayout .heroBadge {
