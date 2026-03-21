@@ -225,8 +225,96 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+.mobileMenuBtn {
+  display: none;
+}
+
+.mobileMenuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--black);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 24px;
+  animation: slideFadeIn 0.3s ease forwards;
+}
+
+.mobileMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.mobileMenuHeader .navLogo {
+  color: var(--white);
+}
+
+.mobileMenuHeader .navLogo span {
+  color: var(--accent);
+}
+
+.closeMenuBtn {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileMenuLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.mobileMenuLinks a {
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.mobileMenuFooter {
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 900px) {
   .nav { padding: 18px 24px; }
   .navLinks { display: none; }
+  .nav > .navCta { display: none; }
   .bgText { font-size: 22vw; }
+  
+  .mobileMenuBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #e8e8e8;
+    color: #14203a;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
 }

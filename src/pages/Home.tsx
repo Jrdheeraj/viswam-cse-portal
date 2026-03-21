@@ -1,8 +1,10 @@
-import { useEffect, lazy, Suspense, useRef } from 'react';
+import { useEffect, lazy, Suspense, useRef, useState } from 'react';
 import styles from './Home.module.css';
 import {
   Globe,
-  ArrowUpRight
+  ArrowUpRight,
+  Menu,
+  X
 } from 'lucide-react';
 
 // Lazy load sections for performance
@@ -23,6 +25,17 @@ const Footer = lazy(() => import("@/components/Footer"));
 
 export default function Home() {
   const viewerRef = useRef<HTMLElement>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Prevent scrolling when menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => { document.body.style.overflow = 'auto'; };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     // Load Spline viewer script precisely
@@ -49,8 +62,12 @@ export default function Home() {
     observeAll();
 
     // Watch for new elements added to the DOM (from lazy-loaded components)
+    let mutationTimeout: ReturnType<typeof setTimeout>;
     const mutationObserver = new MutationObserver(() => {
-      observeAll();
+      clearTimeout(mutationTimeout);
+      mutationTimeout = setTimeout(() => {
+        observeAll();
+      }, 200);
     });
     mutationObserver.observe(document.body, { childList: true, subtree: true });
 
@@ -123,7 +140,49 @@ export default function Home() {
           <span>Apply Now</span>
           <ArrowUpRight size={18} />
         </a>
+        {/* MOBILE MENU BUTTON */}
+        <button 
+          className={styles.mobileMenuBtn}
+          onClick={() => setIsMobileMenuOpen(true)}
+        >
+          <Menu size={18} />
+          <span>MENU</span>
+        </button>
       </nav>
+
+      {/* MOBILE FULLSCREEN MENU OVERLAY */}
+      {isMobileMenuOpen && (
+        <div className={styles.mobileMenuOverlay}>
+          <div className={styles.mobileMenuHeader}>
+            <div className={styles.navLogo}>
+              <Globe size={20} />
+              <div>CSE<span>.</span>DEPT</div>
+            </div>
+            <button 
+              className={styles.closeMenuBtn} 
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <X size={28} />
+            </button>
+          </div>
+          <div className={styles.mobileMenuLinks}>
+            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+            <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+            <a href="#academics" onClick={() => setIsMobileMenuOpen(false)}>Academics</a>
+            <a href="#facilities" onClick={() => setIsMobileMenuOpen(false)}>Facilities</a>
+            <a href="#faculty" onClick={() => setIsMobileMenuOpen(false)}>Faculty</a>
+            <a href="#activities" onClick={() => setIsMobileMenuOpen(false)}>Activities</a>
+            <a href="#placements" onClick={() => setIsMobileMenuOpen(false)}>Placements</a>
+            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+          </div>
+          <div className={styles.mobileMenuFooter}>
+            <a href="#contact" className={styles.navCta} onClick={() => setIsMobileMenuOpen(false)}>
+              <span>Apply Now</span>
+              <ArrowUpRight size={18} />
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* HERO */}
       <section className={styles.hero}>
@@ -138,6 +197,7 @@ export default function Home() {
           className={styles.background}
           url="https://prod.spline.design/jy3wX1wO7Csr14qu/scene.splinecode"
           background="transparent"
+          events-target="none"
         />
 
         <div className={styles.heroBadge}>
