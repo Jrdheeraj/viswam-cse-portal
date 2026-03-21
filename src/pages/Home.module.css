@@ -302,6 +302,17 @@
   .nav > .navCta { display: none; }
   .bgText { font-size: 22vw; }
   
+  /* Performance Hack: Cut Spline rendering resolution by 75% on mobile */
+  /* We make the container 50% of screen size, then visually scale it up 2x (1.8 * 2 = 3.6) */
+  /* The mobile GPU shader only has to render 1/4th the amount of pixels! */
+  .background {
+    width: 60% !important;
+    height: 60% !important;
+    top: 20% !important;
+    left: 20% !important;
+    transform: scale(3.0) !important;
+  }
+
   .mobileMenuBtn {
     display: flex;
     align-items: center;
