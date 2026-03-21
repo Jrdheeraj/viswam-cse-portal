@@ -16,7 +16,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-card">
+    <nav className="sticky top-0 z-50 border-b border-border bg-card shadow-sm">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <a href="#hero" className="font-terminal text-xl font-bold">
           <span className="text-gold">{"{ "}</span>
@@ -38,7 +38,7 @@ const Navbar = () => {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center gap-1 bg-navy text-gold font-bold text-sm rounded-full px-5 py-2.5 hover:bg-gold hover:text-navy transition-colors"
+          className="hidden md:inline-flex items-center gap-1 bg-[#14203a] text-gold font-bold text-sm rounded-full px-5 py-2.5 hover:bg-gold hover:text-[#14203a] transition-colors"
         >
           Apply Now ↗
         </a>
@@ -63,7 +63,7 @@ const Navbar = () => {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-4 bg-navy text-gold text-center font-bold text-sm rounded-lg px-5 py-4 active:scale-[0.98] transition-transform"
+            className="mt-4 bg-[#14203a] text-gold text-center font-bold text-sm rounded-lg px-5 py-4 active:scale-[0.98] transition-transform"
           >
             Apply Now ↗
           </a>

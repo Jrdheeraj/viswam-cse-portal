@@ -57,7 +57,7 @@ const HeroTerminal = () => {
         {/* Terminal Card Wrapper */}
         <div className="rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-border/60 bg-card overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
           {/* Department header block */}
-          <div className="bg-terminal-black px-6 py-5 text-center border-b border-[#1e1e1e]">
+          <div className="bg-terminal-black px-6 py-5 text-center border-b border-[#1a2d4d]">
             <h1 className="font-terminal text-gold text-xl md:text-2xl font-bold tracking-widest">
               {"{ "} COMPUTER SCIENCE & ENGINEERING {" }"}
             </h1>
@@ -87,7 +87,7 @@ const HeroTerminal = () => {
           {/* Terminal body */}
           <div className="flex flex-col md:flex-row bg-terminal-black">
             {/* Left: code blocks */}
-            <div className="flex-1 p-4 md:p-6 lg:p-8 border-b md:border-b-0 md:border-r border-[#1e1e1e] font-terminal text-[13px] leading-relaxed relative min-h-[340px]">
+            <div className="flex-1 p-4 md:p-6 lg:p-8 border-b md:border-b-0 md:border-r border-[#1a2d4d] font-terminal text-[13px] leading-relaxed relative min-h-[340px]">
               {Array.from({ length: 14 }).map((_, i) => {
                 const stepThreshold = i + 1;
                 const isVisible = step >= stepThreshold;
@@ -117,7 +117,7 @@ const HeroTerminal = () => {
                   <div key={i} className="flex min-h-[22px] md:min-h-[24px]">
                     <span className="w-8 text-[#555] select-none text-right pr-4">{i + 1}</span>
                     <div className="flex-1 flex gap-2 items-center">{lineContent}</div>
-                    {i === 4 && <div className="absolute inset-x-0 mx-2 bg-[#1a1a1a] h-6 -z-10 rounded-sm" style={{ opacity: isVisible ? 1 : 0 }} />}
+                    {i === 4 && <div className="absolute inset-x-0 mx-2 bg-[#1a2d4d] h-6 -z-10 rounded-sm" style={{ opacity: isVisible ? 1 : 0 }} />}
                   </div>
                 );
               })}
@@ -139,7 +139,7 @@ const HeroTerminal = () => {
                       <span>{bar.label}</span>
                       <span className="text-gold">{progress[i]}%</span>
                     </div>
-                    <div className="h-1.5 bg-[#1a1a1a] rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-[#1a2d4d] rounded-full overflow-hidden">
                       <div
                         className={`h-full ${bar.color} rounded-full transition-all duration-300`}
                         style={{ width: `${progress[i]}%` }}
@@ -149,7 +149,7 @@ const HeroTerminal = () => {
                 ))}
               </div>
 
-              <div className="border-t border-[#1e1e1e] my-1" />
+              <div className="border-t border-[#1a2d4d] my-1" />
 
               <div className="space-y-2.5">
                 <div className="flex justify-between text-[#888]">

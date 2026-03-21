@@ -4,7 +4,7 @@ const cards = [
   {
     icon: Cpu,
     iconLabel: "AI  IoT  CLOUD  CYBER",
-    bg: "#111827",
+    bg: "#14203a",
     badge: { text: "Learning", bg: "#FFF3CD", color: "#856404" },
     title: "Workshops & Seminars",
     desc: "Hands-on sessions on AI, IoT, Cybersecurity, Cloud Computing and Data Science with industry experts.",
@@ -12,7 +12,7 @@ const cards = [
   {
     icon: Code2,
     iconLabel: "{ HACK }  CODE  WIN",
-    bg: "#0f172a",
+    bg: "#14203a",
     badge: { text: "Competition", bg: "#D1ECF1", color: "#0C5460" },
     title: "Hackathons & Coding",
     desc: "Innovation and problem-solving through coding contests, hackathons and competitive programming events.",
@@ -20,7 +20,7 @@ const cards = [
   {
     icon: BookOpen,
     iconLabel: "IEEE  ACM  SCOPUS",
-    bg: "#052e16",
+    bg: "#14203a",
     badge: { text: "Research", bg: "#D4EDDA", color: "#155724" },
     title: "Research & Publications",
     desc: "Faculty and students publishing in IEEE, Springer, ACM and Scopus-indexed international journals.",
@@ -28,7 +28,7 @@ const cards = [
   {
     icon: Handshake,
     iconLabel: "MoU  INTERNSHIP  COLLAB",
-    bg: "#3b0f0f",
+    bg: "#14203a",
     badge: { text: "Industry", bg: "#F8D7DA", color: "#721C24" },
     title: "Industry Collaboration",
     desc: "MoUs with leading IT companies for internships, industrial training and joint research projects.",
@@ -36,7 +36,7 @@ const cards = [
   {
     icon: Users,
     iconLabel: "IEEE  CSI  ISTE  ACM",
-    bg: "#1e1b4b",
+    bg: "#14203a",
     badge: { text: "Community", bg: "#E2D9F3", color: "#432874" },
     title: "Student Clubs",
     desc: "Active IEEE, CSI, ISTE and ACM student chapters organizing technical, cultural and leadership events.",
@@ -44,7 +44,7 @@ const cards = [
   {
     icon: Rocket,
     iconLabel: "STARTUP  IDEA  INCUBATE",
-    bg: "#1a1200",
+    bg: "#14203a",
     badge: { text: "Innovation", bg: "#FFD700", color: "#1B2A4A" },
     title: "Innovation & Start-ups",
     desc: "Incubation support for entrepreneurial ventures and interdisciplinary innovation projects from students.",

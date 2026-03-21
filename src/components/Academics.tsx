@@ -13,7 +13,7 @@ const peos = [
     title: "Foundation & Field Readiness",
     desc: "Cultivate individuals with a robust base of expertise in CSE, ensuring they graduate well-equipped for the field.",
     visual: (
-      <div className="h-full w-full bg-[#111] flex flex-col items-center justify-center relative overflow-hidden group-hover:bg-[#1a1a1a] transition-colors duration-500">
+      <div className="h-full w-full bg-[#14203a] flex flex-col items-center justify-center relative overflow-hidden group-hover:bg-[#1a2d4d] transition-colors duration-500">
         <div className="absolute inset-0 opacity-20 flex flex-wrap gap-4 p-4 pointer-events-none">
           {Array.from({ length: 20 }).map((_, i) => (
             <span key={i} className="text-white text-[10px] font-terminal animate-float-particle" style={{ animationDelay: `${i * 200}ms` }}>{i % 2 === 0 ? "0" : "1"}</span>
@@ -69,8 +69,8 @@ const psos = [
     title: "Software Engineering Excellence",
     desc: "Administer software engineering principles for building high innovative software systems using modern tools.",
     visual: (
-      <div className="h-full w-full bg-[#1a1a2e] flex flex-col items-center justify-center relative overflow-hidden group-hover:bg-[#20203a] transition-colors duration-500">
-        <div className="absolute inset-4 rounded-xl border border-gold/10 bg-black/40 font-terminal p-4 overflow-hidden pointer-events-none group-hover:opacity-60 transition-opacity">
+      <div className="h-full w-full bg-[#14203a] flex flex-col items-center justify-center relative overflow-hidden group-hover:bg-[#1a2d4d] transition-colors duration-500">
+        <div className="absolute inset-4 rounded-xl border border-gold/10 bg-[#14203a]/40 font-terminal p-4 overflow-hidden pointer-events-none group-hover:opacity-60 transition-opacity">
           <div className="text-gold/30 text-[8px] animate-pulse"># building excellence...</div>
           <div className="text-gold/20 text-[8px] mt-1 ml-2">class Innovation { "{" }</div>
           <div className="text-gold/20 text-[8px] mt-1 ml-4">build() { "{ ... }" }</div>
@@ -157,7 +157,7 @@ const Academics = () => (
       <div className="mb-20">
         <div className="flex items-center gap-4 mb-10">
           <div className="h-px bg-gray-200 flex-grow" />
-          <h3 className="text-[14px] font-black uppercase tracking-[4px] text-black">Programme Education Objectives (PEOs)</h3>
+          <h3 className="text-[14px] font-black uppercase tracking-[4px] text-[#14203a]">Programme Education Objectives (PEOs)</h3>
           <div className="h-px bg-gray-200 flex-grow" />
         </div>
         <div className="grid md:grid-cols-3 gap-8">
@@ -171,7 +171,7 @@ const Academics = () => (
       <div>
         <div className="flex items-center gap-4 mb-10">
           <div className="h-px bg-gray-200 flex-grow" />
-          <h3 className="text-[14px] font-black uppercase tracking-[4px] text-black">Specific Outcomes (PSOs)</h3>
+          <h3 className="text-[14px] font-black uppercase tracking-[4px] text-[#14203a]">Specific Outcomes (PSOs)</h3>
           <div className="h-px bg-gray-200 flex-grow" />
         </div>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">

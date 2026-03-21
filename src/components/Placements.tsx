@@ -35,7 +35,7 @@ const Placements = () => (
       <div className="grid md:grid-cols-3 gap-8">
         {/* Card 1: Offers */}
         <div className="group rounded-[2.5rem] bg-white border border-gray-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-          <div className="h-48 bg-[#111] flex flex-col items-center justify-center relative overflow-hidden">
+          <div className="h-48 bg-[#14203a] flex flex-col items-center justify-center relative overflow-hidden">
             <span className="text-6xl font-black text-gold/90 group-hover:scale-110 transition-transform duration-500">235</span>
             <div className="absolute inset-x-0 bottom-4 flex flex-wrap justify-center gap-1.5 px-4 opacity-60 group-hover:opacity-100 transition-opacity">
               {["Infosys", "Accenture", "Wipro", "TCS"].map((t, i) => (
