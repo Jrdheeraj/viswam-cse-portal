@@ -54,18 +54,39 @@ export default function Home() {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    if (isMobileFallback) return; // NEVER load heavy 3D engine on mobile even on desktop site mode
-
     let script: HTMLScriptElement | null = null;
-    
-    // Huge mobile optimization: Delay booting WebGL script so the page is interactive instantly
-    const splineTimer = setTimeout(() => {
-      script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'https://unpkg.com/@splinetool/viewer@1.12.70/build/spline-viewer.js';
-      script.async = true;
-      document.head.appendChild(script);
-    }, window.innerWidth <= 900 ? 2500 : 0);
+    let splineTimer: ReturnType<typeof setTimeout> | undefined;
+    let intervalId: ReturnType<typeof setInterval> | undefined;
+
+    if (!isMobileFallback) {
+      // Huge mobile optimization: Delay booting WebGL script so the page is interactive instantly
+      splineTimer = setTimeout(() => {
+        script = document.createElement('script');
+        script.type = 'module';
+        script.src = 'https://unpkg.com/@splinetool/viewer@1.12.70/build/spline-viewer.js';
+        script.async = true;
+        document.head.appendChild(script);
+      }, window.innerWidth <= 900 ? 2500 : 0);
+
+      // Persistent Spline Logo Hiding
+      let hideCount = 0;
+      const hideSplineLogo = () => {
+        const viewer = viewerRef.current;
+        if (viewer && viewer.shadowRoot) {
+          const logo = viewer.shadowRoot.querySelector('#logo');
+          if (logo) {
+            (logo as HTMLElement).style.display = 'none';
+            (logo as HTMLElement).style.opacity = '0';
+            (logo as HTMLElement).style.pointerEvents = 'none';
+            hideCount++;
+            if (hideCount > 10 && intervalId) {
+              clearInterval(intervalId);
+            }
+          }
+        }
+      };
+      intervalId = setInterval(hideSplineLogo, 1000);
+    }
 
     // Scroll-reveal logic - use MutationObserver to catch lazy-loaded elements
     const observer = new IntersectionObserver(
@@ -92,27 +113,6 @@ export default function Home() {
       }, 200);
     });
     mutationObserver.observe(document.body, { childList: true, subtree: true });
-
-    // Persistent Spline Logo Hiding
-    let hideCount = 0;
-    const hideSplineLogo = () => {
-      const viewer = viewerRef.current;
-      if (viewer && viewer.shadowRoot) {
-        const logo = viewer.shadowRoot.querySelector('#logo');
-        if (logo) {
-          (logo as HTMLElement).style.display = 'none';
-          (logo as HTMLElement).style.opacity = '0';
-          (logo as HTMLElement).style.pointerEvents = 'none';
-          hideCount++;
-          // We keep trying a few times even after finding it to ensure it stays hidden
-          if (hideCount > 10 && intervalId) {
-            clearInterval(intervalId);
-          }
-        }
-      }
-    };
-
-    const intervalId = setInterval(hideSplineLogo, 1000);
 
     return () => {
       clearTimeout(splineTimer);
