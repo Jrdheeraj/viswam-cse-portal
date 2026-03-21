@@ -156,10 +156,11 @@
   object-position: center bottom; /* Anchors the robot cleanly to the base of the screen */
   z-index: 1;
   pointer-events: none;
+  mix-blend-mode: multiply; /* Eliminates the solid grey background and blends it flawlessly with white text behind! */
 }
 
 /* Force mobile layout classes when fallback image is triggered regardless of viewport width */
-.forceMobileLayout .nav { padding: 18px 24px !important; }
+.forceMobileLayout .nav { padding: 24px 32px !important; } /* Padded inwards away from screen edges */
 .forceMobileLayout .navLinks { display: none !important; }
 .forceMobileLayout .nav > .navCta { display: none !important; }
 .forceMobileLayout .mobileMenuBtn { 
@@ -180,13 +181,14 @@
 
 .forceMobileLayout .bgText { 
   font-size: 24vw !important; 
-  z-index: 2 !important; 
-  color: rgba(255, 255, 255, 0.6) !important; 
-  top: 15% !important; /* Frames perfectly directly above the center-bottom anchored robot head */
+  z-index: 0 !important; /* Physically behind the robot image */
+  color: #ffffff !important; /* Shines fully through the multiply blend */
+  opacity: 0.9 !important;
+  top: 10% !important; /* Removes floating vertical space above head */
 }
 
 .forceMobileLayout .heroBadge {
-  bottom: 30px !important;
+  bottom: 20px !important; /* Closes empty useless space below knees */
   left: 0 !important;
   width: 100% !important;
   display: flex !important;

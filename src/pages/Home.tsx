@@ -29,9 +29,13 @@ export default function Home() {
   const [loadRest, setLoadRest] = useState(false);
   const [isMobileFallback, setIsMobileFallback] = useState(() => {
     if (typeof window !== 'undefined') {
-      const isTouch = window.matchMedia("(pointer: coarse)").matches;
+      // Aggressive detection to catch mobile browsers simulating "Desktop Site"
+      const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.matchMedia("(pointer: coarse)").matches;
       const isMobileUA = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-      return isTouch || isMobileUA || window.innerWidth <= 900;
+      const isSmallViewport = window.innerWidth <= 900;
+      const isSmallScreen = window.screen.width <= 768; // Physical phone screen width never lies
+      
+      return hasTouch || isMobileUA || isSmallViewport || isSmallScreen;
     }
     return false;
   });
