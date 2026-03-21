@@ -27,6 +27,14 @@ export default function Home() {
   const viewerRef = useRef<HTMLElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [loadRest, setLoadRest] = useState(false);
+  const [isMobileFallback, setIsMobileFallback] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const isTouch = window.matchMedia("(pointer: coarse)").matches;
+      const isMobileUA = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+      return isTouch || isMobileUA || window.innerWidth <= 900;
+    }
+    return false;
+  });
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 900;
@@ -46,7 +54,8 @@ export default function Home() {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    const isMobile = window.innerWidth <= 900;
+    if (isMobileFallback) return; // NEVER load heavy 3D engine on mobile even on desktop site mode
+
     let script: HTMLScriptElement | null = null;
     
     // Huge mobile optimization: Delay booting WebGL script so the page is interactive instantly
@@ -56,7 +65,7 @@ export default function Home() {
       script.src = 'https://unpkg.com/@splinetool/viewer@1.12.70/build/spline-viewer.js';
       script.async = true;
       document.head.appendChild(script);
-    }, isMobile ? 2500 : 0);
+    }, window.innerWidth <= 900 ? 2500 : 0);
 
     // Scroll-reveal logic - use MutationObserver to catch lazy-loaded elements
     const observer = new IntersectionObserver(
@@ -207,14 +216,22 @@ export default function Home() {
         <h1 className={styles.bgText}>COMPUTER<br />SCIENCE</h1>
 
         {/* Spline robot with background class */}
-        {/* @ts-ignore */}
-        <spline-viewer
-          ref={viewerRef}
-          className={styles.background}
-          url="https://prod.spline.design/jy3wX1wO7Csr14qu/scene.splinecode"
-          background="transparent"
-          events-target="none"
-        />
+        {isMobileFallback ? (
+          <img 
+            src="/robot.jpg" 
+            alt="Robot background" 
+            className={styles.mobileRobotImg} 
+          />
+        ) : (
+          /* @ts-ignore */
+          <spline-viewer
+            ref={viewerRef}
+            className={styles.background}
+            url="https://prod.spline.design/jy3wX1wO7Csr14qu/scene.splinecode"
+            background="transparent"
+            events-target="none"
+          />
+        )}
 
         <div className={styles.heroBadge}>
           <span>Est. Department of</span>
