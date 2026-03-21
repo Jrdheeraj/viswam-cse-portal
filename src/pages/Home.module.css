@@ -153,6 +153,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 15%; /* Moves the robot completely upward */
   z-index: 1;
   pointer-events: none;
 }
@@ -311,7 +312,31 @@
   .nav { padding: 18px 24px; }
   .navLinks { display: none; }
   .nav > .navCta { display: none; }
-  .bgText { font-size: 22vw; }
+  
+  /* Fix the invisible background text which gets blocked by the opaque JPG */
+  .bgText { 
+    font-size: 24vw; 
+    z-index: 2; 
+    color: rgba(255, 255, 255, 0.6); 
+    top: 12%; 
+  }
+
+  /* Perfectly align and reveal the text that was blocked by the robot's dark body */
+  .heroBadge {
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.9);
+  }
+
+  .heroBadge span:first-child {
+    color: var(--accent);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+  }
 
   .mobileMenuBtn {
     display: flex;
