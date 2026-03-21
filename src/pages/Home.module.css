@@ -158,6 +158,22 @@
   pointer-events: none;
 }
 
+/* Fallback visibility overrides for opaque static image backgrounds */
+.bgTextFallback {
+  z-index: 2 !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  top: 12% !important;
+}
+
+.heroBadgeFallback {
+  text-shadow: 0 4px 15px rgba(0,0,0,0.9) !important;
+}
+
+.heroBadgeFallback span:first-child {
+  color: var(--accent) !important;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.9) !important;
+}
+
 /* hero overlay gradient */
 .hero::after {
   content: '';
@@ -313,12 +329,8 @@
   .navLinks { display: none; }
   .nav > .navCta { display: none; }
   
-  /* Fix the invisible background text which gets blocked by the opaque JPG */
   .bgText { 
     font-size: 24vw; 
-    z-index: 2; 
-    color: rgba(255, 255, 255, 0.6); 
-    top: 12%; 
   }
 
   /* Perfectly align and reveal the text that was blocked by the robot's dark body */

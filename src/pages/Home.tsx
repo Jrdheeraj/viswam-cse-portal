@@ -213,7 +213,7 @@ export default function Home() {
       <section className={styles.hero}>
 
         {/* CSE text behind robot */}
-        <h1 className={styles.bgText}>COMPUTER<br />SCIENCE</h1>
+        <h1 className={`${styles.bgText} ${isMobileFallback ? styles.bgTextFallback : ''}`}>COMPUTER<br />SCIENCE</h1>
 
         {/* Spline robot with background class */}
         {isMobileFallback ? (
@@ -233,7 +233,7 @@ export default function Home() {
           />
         )}
 
-        <div className={styles.heroBadge}>
+        <div className={`${styles.heroBadge} ${isMobileFallback ? styles.heroBadgeFallback : ''}`}>
           <span>Est. Department of</span>
           <span>Computer Science & Engineering</span>
         </div>
